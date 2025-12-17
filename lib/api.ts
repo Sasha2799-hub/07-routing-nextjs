@@ -30,7 +30,7 @@ export const fetchNotes = async (
       },
     }
   );
-  console.log(res.data.tag)
+   console.log(tag);
   return res.data;
 };
 
@@ -45,6 +45,7 @@ export const createNote = async (newNote: CreateNote): Promise<Note> => {
     }
   );
 
+ 
   return res.data;
 };
 
