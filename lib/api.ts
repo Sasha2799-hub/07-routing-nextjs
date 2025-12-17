@@ -5,10 +5,11 @@ import { log } from "console";
 export interface NotesResponse {
   notes: Note[];
   totalPages: number;
-  tag: string;
+  tag: string
 }
 
 const TOKEN = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
+
 export const fetchNotes = async (
   search = "",
   page = 1,
@@ -22,14 +23,14 @@ export const fetchNotes = async (
         page,
         perPage,
         search,
-        ...(tag && { tag }),
+        ...(tag && { tag }), 
       },
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       },
     }
   );
-
+  console.log(res.data.tag)
   return res.data;
 };
 
@@ -65,6 +66,6 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
     }
   );
   console.log(id);
-
+  
   return res.data;
 };
