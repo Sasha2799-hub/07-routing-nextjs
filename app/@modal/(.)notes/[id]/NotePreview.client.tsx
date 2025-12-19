@@ -16,7 +16,8 @@ export default function NotePreview() {
     enabled: !!id,
     refetchOnMount: false,
   });
-
+  if (isLoading) return <p>Loading, please wait...</p>;
+  if (error) return <p>Something went wrong.</p>;
   return (
     <Modal onClose={() => router.back()}>
       <div className={css.container}>

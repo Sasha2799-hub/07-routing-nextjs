@@ -7,14 +7,15 @@ import {
 import { fetchNoteById } from "@/lib/api";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function NoteModalPage({ params }: Props) {
   const queryClient = new QueryClient();
+  const { id } = await params; 
   await queryClient.prefetchQuery({
-    queryKey: ["note", params.id],
-    queryFn: () => fetchNoteById(params.id),
+    queryKey: ["note", id],
+    queryFn: () => fetchNoteById(id),
   });
 
   return (
